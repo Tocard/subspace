@@ -7930,6 +7930,7 @@ dependencies = [
  "subspace-erasure-coding",
  "subspace-farmer-components",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-proof-of-space",
  "subspace-runtime-primitives",
  "subspace-verification",
@@ -10064,6 +10065,7 @@ dependencies = [
  "subspace-core-primitives",
  "subspace-erasure-coding",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-proof-of-space",
  "subspace-verification",
  "thiserror 2.0.0",
@@ -10099,6 +10101,7 @@ dependencies = [
  "subspace-erasure-coding",
  "subspace-farmer-components",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-networking",
  "subspace-rpc-primitives",
  "thiserror 2.0.0",
@@ -12618,6 +12621,7 @@ dependencies = [
  "subspace-erasure-coding",
  "subspace-farmer-components",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-metrics",
  "subspace-networking",
  "subspace-proof-of-space",
@@ -12662,6 +12666,7 @@ dependencies = [
  "subspace-core-primitives",
  "subspace-erasure-coding",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-proof-of-space",
  "subspace-verification",
  "thiserror 2.0.0",
@@ -12688,6 +12693,7 @@ dependencies = [
  "subspace-erasure-coding",
  "subspace-gateway-rpc",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-networking",
  "subspace-rpc-primitives",
  "subspace-verification",
@@ -12726,6 +12732,15 @@ dependencies = [
  "static_assertions",
  "subspace-core-primitives",
  "tracing",
+]
+
+[[package]]
+name = "subspace-logging"
+version = "0.0.1"
+dependencies = [
+ "supports-color",
+ "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
@@ -12834,6 +12849,7 @@ dependencies = [
  "serde",
  "serde_json",
  "subspace-core-primitives",
+ "subspace-logging",
  "subspace-metrics",
  "thiserror 2.0.0",
  "tokio",
@@ -12899,6 +12915,7 @@ dependencies = [
  "sp-messenger",
  "sp-runtime",
  "subspace-core-primitives",
+ "subspace-logging",
  "subspace-metrics",
  "subspace-networking",
  "subspace-proof-of-space",
@@ -13127,6 +13144,7 @@ dependencies = [
  "subspace-core-primitives",
  "subspace-erasure-coding",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-networking",
  "subspace-proof-of-space",
  "subspace-runtime-primitives",
@@ -13164,6 +13182,7 @@ dependencies = [
  "subspace-erasure-coding",
  "subspace-farmer-components",
  "subspace-kzg",
+ "subspace-logging",
  "subspace-proof-of-space",
  "subspace-runtime-primitives",
  "subspace-service",
@@ -13932,6 +13951,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "tracing-serde"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bc6b213177105856957181934e4920de57730fc69bf42c37ee5bb664d406d9e1"
+dependencies = [
+ "serde",
+ "tracing-core",
+]
+
+[[package]]
 name = "tracing-subscriber"
 version = "0.3.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -13942,6 +13971,8 @@ dependencies = [
  "once_cell",
  "parking_lot 0.12.3",
  "regex",
+ "serde",
+ "serde_json",
  "sharded-slab",
  "smallvec",
  "thread_local",
@@ -13949,6 +13980,7 @@ dependencies = [
  "tracing",
  "tracing-core",
  "tracing-log",
+ "tracing-serde",
 ]
 
 [[package]]

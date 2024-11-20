@@ -1,0 +1,12 @@
+[package]
+name = "subspace-logging"
+version = "0.0.1"
+edition = "2021"
+
+[lib]
+name = "subspace_logging"
+
+[dependencies]
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter", "json"] }
+supports-color = "3.0.1"

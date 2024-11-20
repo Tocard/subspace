@@ -8,7 +8,6 @@ use crate::commands::run::consensus::{
 use crate::commands::run::domain::{
     create_domain_configuration, run_domain, DomainOptions, DomainStartOptions,
 };
-use crate::commands::shared::init_logger;
 use crate::{set_default_ss58_version, Error, PosTable};
 use clap::Parser;
 use cross_domain_message_gossip::GossipWorkerBuilder;
@@ -74,9 +73,6 @@ fn raise_fd_limit() {
 /// Default run command for node
 #[tokio::main]
 pub async fn run(run_options: RunOptions) -> Result<(), Error> {
-    init_logger();
-    raise_fd_limit();
-
     let signals = Signals::capture()?;
 
     let RunOptions {
@@ -96,6 +92,7 @@ pub async fn run(run_options: RunOptions) -> Result<(), Error> {
         mut prometheus_configuration,
     } = create_consensus_chain_configuration(consensus, domain_options.is_some())?;
 
+    raise_fd_limit();
     let maybe_domain_configuration = domain_options
         .map(|domain_options| {
             create_domain_configuration(&subspace_configuration, dev, domain_options)

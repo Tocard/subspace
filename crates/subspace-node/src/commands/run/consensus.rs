@@ -27,6 +27,8 @@ use subspace_service::config::{
 use subspace_service::dsn::DsnConfig;
 use tempfile::TempDir;
 use tracing::{error, warn};
+use subspace_logging::init_logger;
+
 
 /// Roughly 138k empty blocks can fit into one archived segment, hence we need to not allow to prune
 /// more blocks that this
@@ -393,6 +395,12 @@ pub(super) struct ConsensusChainOptions {
     #[arg(long, verbatim_doc_comment)]
     dev: bool,
 
+    /// Json log format.
+    ///
+    /// If set, will log as json
+    #[arg(long)]
+    json_logging: bool,
+
     /// Run a temporary node.
     ///
     /// This will create a temporary directory for storing node data that will be deleted at the
@@ -499,6 +507,7 @@ pub(super) fn create_consensus_chain_configuration(
         mut chain,
         mut farmer,
         dev,
+        json_logging,
         mut tmp,
         rpc_options,
         name,
@@ -517,9 +526,9 @@ pub(super) fn create_consensus_chain_configuration(
         mut sync,
     } = consensus_node_options;
 
+    init_logger(json_logging);
     let transaction_pool;
     let rpc_cors;
-
     // Development mode handling is limited to this section
     {
         if dev {

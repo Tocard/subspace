@@ -15,6 +15,7 @@ use std::net::{IpAddr, Ipv4Addr, Ipv6Addr, SocketAddr};
 use std::panic;
 use std::process::exit;
 use std::sync::Arc;
+use subspace_logging::init_logger;
 use subspace_metrics::{start_prometheus_metrics_server, RegistryAdapter};
 use subspace_networking::libp2p::multiaddr::Protocol;
 use subspace_networking::{peer_id, Config, KademliaMode};
@@ -117,22 +118,10 @@ fn set_exit_on_panic() {
     }));
 }
 
-fn init_logging() {
-    // set default log to info if the RUST_LOG is not set.
-    let env_filter = EnvFilter::builder()
-        .with_default_directive(Level::INFO.into())
-        .from_env_lossy();
-
-    let builder = Subscriber::builder().with_env_filter(env_filter).finish();
-
-    builder.init()
-}
-
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     set_exit_on_panic();
-    init_logging();
-
+    init_logger(false);
     let command: Command = Command::parse();
 
     match command {

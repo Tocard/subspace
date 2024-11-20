@@ -128,8 +128,7 @@ enum Command {
 
 #[tokio::main]
 async fn main() {
-    init_logging();
-
+    init_logger(false);
     let args: Args = Args::parse();
 
     info!(?args, "Benchmark started.");
@@ -394,15 +393,4 @@ pub async fn configure_dsn(
     println!("Node address {}", node_addr);
 
     node
-}
-
-fn init_logging() {
-    // set default log to info if the RUST_LOG is not set.
-    let env_filter = EnvFilter::builder()
-        .with_default_directive(Level::INFO.into())
-        .from_env_lossy();
-
-    let builder = Subscriber::builder().with_env_filter(env_filter).finish();
-
-    builder.init()
 }

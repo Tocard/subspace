@@ -40,6 +40,7 @@ subspace-core-primitives = { version = "0.1.0", path = "../subspace-core-primiti
 subspace-erasure-coding = { version = "0.1.0", path = "../subspace-erasure-coding" }
 subspace-farmer-components = { version = "0.1.0", path = "../subspace-farmer-components" }
 subspace-kzg = { version = "0.1.0", path = "../../shared/subspace-kzg" }
+subspace-logging = { version = "0.0.1", path = "../../shared/subspace-logging" }
 subspace-proof-of-space = { version = "0.1.0", path = "../subspace-proof-of-space" }
 
 [features]
