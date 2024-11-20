@@ -18,7 +18,7 @@ pub fn init_logger(json_logging_enabled: bool) {
             .with(
                 fmt::layer()
                     .with_ansi(enable_color)
-                    .json() // Use JSON formatting
+                    .json()
                     .with_filter(
                         EnvFilter::builder()
                             .with_default_directive(LevelFilter::INFO.into())
