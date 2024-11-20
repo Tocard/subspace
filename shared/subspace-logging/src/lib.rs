@@ -17,7 +17,6 @@ pub fn init_logger(json_logging_enabled: bool) {
         tracing_subscriber::registry()
             .with(
                 fmt::layer()
-                    .with_ansi(enable_color)
                     .json()
                     .with_filter(
                         EnvFilter::builder()

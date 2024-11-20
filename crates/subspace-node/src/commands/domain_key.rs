@@ -92,6 +92,7 @@ pub struct InsertDomainKeyOptions {
 }
 
 pub fn insert_domain_key(options: InsertDomainKeyOptions) -> Result<(), Error> {
+    init_logger(false);
     let InsertDomainKeyOptions {
         base_path,
         domain_id,

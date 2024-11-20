@@ -2,6 +2,7 @@ use clap::Parser;
 use std::path::PathBuf;
 use std::{fs, io};
 use tracing::info;
+use subspace_logging::init_logger;
 
 /// Options for running a node
 #[derive(Debug, Parser)]
@@ -11,6 +12,7 @@ pub struct WipeOptions {
 }
 
 pub fn wipe(WipeOptions { base_path }: WipeOptions) -> Result<(), io::Error> {
+    init_logger(false);
     let paths = [
         base_path.join("db"),
         base_path.join("domains"),
